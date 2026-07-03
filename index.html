@@ -16,6 +16,16 @@
     <script type="text/javascript" src="https://unpkg.com/qr-code-styling@1.5.0/lib/qr-code-styling.js"></script>
 </head>
 <body>
+    <!-- Password Overlay -->
+    <div id="password-overlay" class="password-overlay">
+        <div class="password-modal glass-panel">
+            <h2>🔒 សូមបញ្ចូលលេខសម្ងាត់</h2>
+            <input type="password" id="password-input" placeholder="បញ្ចូលលេខសម្ងាត់ទីនេះ...">
+            <button id="password-submit" class="btn btn-primary">ចូលប្រើ (Enter)</button>
+            <p id="password-error" class="error-text" style="display: none; color: #ef4444; margin-top: 10px;">លេខសម្ងាត់មិនត្រឹមត្រូវទេ!</p>
+        </div>
+    </div>
+
     <div class="app-container">
         <!-- Header -->
         <header>

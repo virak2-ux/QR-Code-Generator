@@ -1,5 +1,28 @@
 document.addEventListener('DOMContentLoaded', () => {
     // -----------------------------------------------------
+    // 0. Password Protection
+    // -----------------------------------------------------
+    const passwordOverlay = document.getElementById('password-overlay');
+    const passwordInput = document.getElementById('password-input');
+    const passwordSubmit = document.getElementById('password-submit');
+    const passwordError = document.getElementById('password-error');
+
+    function checkPassword() {
+        if (passwordInput.value === '9999') {
+            passwordOverlay.style.display = 'none';
+        } else {
+            passwordError.style.display = 'block';
+        }
+    }
+
+    passwordSubmit.addEventListener('click', checkPassword);
+    passwordInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            checkPassword();
+        }
+    });
+
+    // -----------------------------------------------------
     // 1. Initial QR Code Setup
     // -----------------------------------------------------
     const qrCode = new QRCodeStyling({
