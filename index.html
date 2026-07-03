@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="km">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>កម្មវិធីផលិត QR Code (Pro)</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- BoxIcons -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+    <!-- QR Code Styling Library -->
+    <script type="text/javascript" src="https://unpkg.com/qr-code-styling@1.5.0/lib/qr-code-styling.js"></script>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header>
+            <div class="logo-container">
+                <div class="logo">
+                    <i class='bx bx-qr-scan'></i>
+                    <h1>QR Code Pro</h1>
+                </div>
+                <div class="creator-text">Created by <a href="https://t.me/virak81" target="_blank" rel="noopener noreferrer"><strong>virak81</strong> (Telegram)</a></div>
+            </div>
+            <button id="theme-toggle" class="icon-btn" title="ប្តូរពណ៌ Background">
+                <i class='bx bx-moon'></i>
+            </button>
+        </header>
+
+        <main class="main-content">
+            <!-- Settings Panel -->
+            <section class="settings-panel glass-panel">
+                <h2 class="panel-title">ការកំណត់ (Settings)</h2>
+
+                <!-- Input Data -->
+                <div class="setting-group">
+                    <label for="qr-data">ទិន្នន័យ (URL / Text / Phone)</label>
+                    <textarea id="qr-data" placeholder="បញ្ចូលតំណភ្ជាប់ (URL) ឬអត្ថបទទីនេះ..." rows="3">https://antigravity.dev</textarea>
+                </div>
+
+                <!-- Color Settings -->
+                <div class="setting-group col-2">
+                    <div class="color-picker-group">
+                        <label for="dots-color">ពណ៌ QR (Dots)</label>
+                        <div class="color-input-wrapper">
+                            <input type="color" id="dots-color" value="#6366f1">
+                            <span class="color-value">#6366f1</span>
+                        </div>
+                    </div>
+                    <div class="color-picker-group">
+                        <label for="bg-color">ពណ៌ផ្ទៃ (Background)</label>
+                        <div class="color-input-wrapper">
+                            <input type="color" id="bg-color" value="#ffffff">
+                            <span class="color-value">#ffffff</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Shape Settings -->
+                <div class="setting-group">
+                    <label>ក្បាច់ QR (Style)</label>
+                    <div class="radio-group" id="dots-style-group">
+                        <label class="radio-card active" data-value="square">
+                            <i class='bx bx-square'></i><span>Square</span>
+                        </label>
+                        <label class="radio-card" data-value="dots">
+                            <i class='bx bx-circle'></i><span>Dots</span>
+                        </label>
+                        <label class="radio-card" data-value="rounded">
+                            <i class='bx bx-rectangle'></i><span>Rounded</span>
+                        </label>
+                        <label class="radio-card" data-value="classy">
+                            <i class='bx bx-diamond'></i><span>Classy</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Corner Settings -->
+                <div class="setting-group">
+                    <label>ជ្រុងកែង (Corners)</label>
+                    <div class="radio-group" id="corners-style-group">
+                        <label class="radio-card active" data-value="square">
+                            <i class='bx bx-square'></i><span>Square</span>
+                        </label>
+                        <label class="radio-card" data-value="dot">
+                            <i class='bx bx-circle'></i><span>Dot</span>
+                        </label>
+                        <label class="radio-card" data-value="extra-rounded">
+                            <i class='bx bx-rectangle'></i><span>Rounded</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Logo Upload -->
+                <div class="setting-group">
+                    <label>បញ្ចូល Logo</label>
+                    <div class="upload-area" id="drop-area">
+                        <input type="file" id="logo-input" accept="image/*" hidden>
+                        <i class='bx bx-cloud-upload'></i>
+                        <p>ចុចទីនេះ ឬទាញរូបភាពមកទីនេះ</p>
+                        <span class="file-name" id="file-name">មិនទាន់មានរូបភាព</span>
+                    </div>
+                    <button class="btn btn-outline" id="clear-logo" style="display: none; margin-top: 10px; width: 100%;">
+                        <i class='bx bx-trash'></i> លុប Logo វិញ
+                    </button>
+                </div>
+            </section>
+
+            <!-- Preview Panel -->
+            <section class="preview-panel glass-panel">
+                <div class="preview-header">
+                    <h2>លទ្ធផល (Preview)</h2>
+                </div>
+                
+                <div class="qr-container">
+                    <div id="qr-code"></div>
+                </div>
+
+                <div class="download-section">
+                    <label>ទាញយកជាទម្រង់៖</label>
+                    <div class="download-actions">
+                        <select id="download-format" class="format-select">
+                            <option value="png">PNG (រូបភាពគុណភាពខ្ពស់)</option>
+                            <option value="jpeg">JPEG (រូបភាពធម្មតា)</option>
+                            <option value="svg">SVG (សម្រាប់ Design)</option>
+                            <option value="webp">WebP (សម្រាប់ Web)</option>
+                        </select>
+                        <button id="download-btn" class="btn btn-primary">
+                            <i class='bx bx-download'></i> ទាញយក (Download)
+                        </button>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
